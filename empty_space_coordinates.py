@@ -89,24 +89,22 @@ def camera_detection():
                 color = [int(c) for c in COLORS[class_ids[i]]]
                 cv2.rectangle(image, (x, y), (x + w, y + h), color=color, thickness=thickness)
                 text = f"{LABELS[class_ids[i]]}: {confidences[i]:.2f}"
-                if LABELS[class_ids[i]] == 'elephant':
-                    if h > 270 and w > 270 and h < 350 and w < 390:
-                        
-                        if x < 130 and x > 0:
-                            x = 330
-                            y = 100
-                            print(f'X: {x} Y: {y}')
-                        if x > 130 and x < 200:
-                            x = 400
-                            y = 100
-                            print(f'X: {x} Y: {y}')
+                if h > 270 and w > 270 and h < 350 and w < 390:
+                    if x < 130 and x > 0:
+                        x = 330
+                        y = 100
+                        print(f'слева X: {x} Y: {y}')
+                    if x > 130 and x < 200:
+                        x = 400
+                        y = 100
+                        print(f'посередине X: {x} Y: {y}')
 
-                        if x > 200 and x < 300:
-                            x = 1
-                            y = 100
-                            print(f'X: {x} Y: {y}')
-                    else:
-                        print(f'Height: {h} Widht: {w}\nизображение слишком близко либо слишком далеко')
+                    if x > 200 and x < 300:
+                        x = 1
+                        y = 100
+                        print(f'справа X: {x} Y: {y}')
+                else:
+                    print(f'Height: {h} Widht: {w}\nизображение слишком близко либо слишком далеко')
                 # calculate text width & height to draw the transparent boxes as background of the text
                 (text_width, text_height) = cv2.getTextSize(text, cv2.FONT_HERSHEY_SIMPLEX, fontScale=font_scale, thickness=thickness)[0]
                 text_offset_x = x
